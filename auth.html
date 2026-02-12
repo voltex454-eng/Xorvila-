@@ -7,183 +7,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --brand-orange: #ff9900;
-            --brand-black: #050505;
-        }
-
+        :root { --brand-orange: #ff9900; --brand-black: #050505; }
         body {
             background-color: var(--brand-black);
             color: #e5e5e5;
             font-family: 'Inter', sans-serif;
             background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, transparent 70%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-            margin: 0;
+            display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; margin: 0;
         }
-
-        /* --- Tech Background --- */
         .tech-grid {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            position: absolute;
-            inset: 0;
-            z-index: -1;
+            position: absolute; inset: 0; z-index: -1;
         }
-
-        /* --- Auth Card --- */
         .auth-card {
-            background: rgba(17, 17, 17, 0.85);
-            border: 1px solid #333;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 420px;
-            padding: 2.5rem;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px rgba(255, 153, 0, 0.05) inset;
-            backdrop-filter: blur(12px);
+            background: rgba(17, 17, 17, 0.85); border: 1px solid #333; border-radius: 12px; width: 100%; max-width: 420px; padding: 2.5rem; position: relative; z-index: 10;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px rgba(255, 153, 0, 0.05) inset; backdrop-filter: blur(12px);
         }
-
-        .hub-box {
-            background: linear-gradient(135deg, #ff9900 0%, #ffb700 100%);
-            color: black;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 900;
-            display: inline-block;
-            margin-left: 5px;
-        }
-
-        /* --- Forms --- */
+        .hub-box { background: linear-gradient(135deg, #ff9900 0%, #ffb700 100%); color: black; padding: 2px 8px; border-radius: 4px; font-weight: 900; display: inline-block; margin-left: 5px; }
         .form-group { margin-bottom: 1.25rem; }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            color: #aaa;
-            font-weight: 600;
-        }
-
-        .form-input {
-            width: 100%;
-            background: #080808;
-            border: 1px solid #333;
-            color: white;
-            padding: 12px 12px 12px 40px; /* Padding left for icon */
-            border-radius: 6px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .form-input:focus {
-            border-color: var(--brand-orange);
-            box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.1);
-        }
-
-        .btn-glow {
-            background: var(--brand-orange);
-            color: black;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 12px;
-            border-radius: 6px;
-            width: 100%;
-            transition: 0.3s;
-            cursor: pointer;
-            margin-top: 1rem;
-            border: none;
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
-            transform: translateY(-1px);
-        }
-        .btn-glow:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .social-btn {
-            width: 100%;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: white;
-            padding: 10px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-        .social-btn.google:hover { background: #222; border-color: #555; }
-        .social-btn.discord { background: #5865F2; border-color: #5865F2; }
-        .social-btn.discord:hover { background: #4752c4; border-color: #4752c4; }
-
-        /* --- Toggle Animation --- */
-        .auth-switch {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-        .auth-switch a {
-            color: var(--brand-orange);
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .auth-switch a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(255,153,0,0.4); }
-
+        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: #aaa; font-weight: 600; }
+        .form-input { width: 100%; background: #080808; border: 1px solid #333; color: white; padding: 12px 12px 12px 40px; border-radius: 6px; outline: none; transition: 0.3s; }
+        .form-input:focus { border-color: var(--brand-orange); box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.1); }
+        .btn-glow { background: var(--brand-orange); color: black; font-weight: 700; text-transform: uppercase; padding: 12px; border-radius: 6px; width: 100%; transition: 0.3s; cursor: pointer; margin-top: 1rem; border: none; }
+        .btn-glow:hover { box-shadow: 0 0 20px rgba(255, 153, 0, 0.4); transform: translateY(-1px); }
+        .btn-glow:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .social-btn { width: 100%; background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 0.9rem; font-weight: 500; transition: 0.2s; cursor: pointer; }
+        .social-btn:hover { background: #222; border-color: #555; }
+        .auth-switch { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #666; }
+        .auth-switch a { color: var(--brand-orange); cursor: pointer; font-weight: 600; transition: 0.3s; }
+        .auth-switch a:hover { text-decoration: underline; }
         .hidden-panel { display: none; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .error-msg {
-            background-color: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            color: #ef4444;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            display: none;
-            text-align: center;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .error-msg { background-color: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 10px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 15px; display: none; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="tech-grid"></div>
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ff9900] rounded-full opacity-[0.05] blur-[150px] pointer-events-none"></div>
-    <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#5865F2] rounded-full opacity-[0.03] blur-[100px] pointer-events-none"></div>
 
     <div class="auth-card">
-        <!-- Logo -->
         <div class="text-center mb-8 cursor-pointer" onclick="window.location.href='index.html'">
             <span class="text-3xl font-bold tracking-tight text-white">Xorvila<span class="hub-box">HUB</span></span>
         </div>
 
-        <!-- ================= LOGIN PANEL ================= -->
+        <!-- LOGIN PANEL -->
         <div id="login-panel" class="fade-in">
             <h2 class="text-xl font-bold text-white mb-1">Welcome Back</h2>
             <p class="text-gray-500 text-sm mb-6">Sign in to manage your services.</p>
-
             <div id="login-error" class="error-msg"></div>
-
             <form id="login-form">
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
@@ -192,105 +67,64 @@
                         <i data-lucide="mail" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <div class="flex justify-between items-center mb-1">
-                        <label class="form-label mb-0">Password</label>
-                        <a href="#" class="text-xs text-gray-500 hover:text-[#ff9900]">Forgot?</a>
-                    </div>
+                    <label class="form-label">Password</label>
                     <div class="relative">
                         <input type="password" id="login-password" class="form-input" placeholder="••••••••" required>
                         <i data-lucide="lock" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i>
                     </div>
                 </div>
-
                 <button type="submit" id="login-btn" class="btn-glow">Sign In</button>
             </form>
-
             <div class="my-6 flex items-center">
                 <div class="flex-grow border-t border-[#333]"></div>
                 <span class="px-3 text-xs text-gray-500 uppercase font-bold tracking-wider">Or continue with</span>
                 <div class="flex-grow border-t border-[#333]"></div>
             </div>
-
             <div class="grid grid-cols-2 gap-3">
                 <button id="google-login-btn" class="social-btn google" type="button">
-                     <svg class="w-5 h-5" viewBox="0 0 48 48">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                    </svg>
-                    Google
+                     <svg class="w-5 h-5" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg> Google
                 </button>
                 <button id="discord-login-btn" class="social-btn discord" type="button">
-                    <svg class="w-5 h-5" viewBox="0 0 127.14 96.36">
-                        <path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77.7,77.7,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.2,46,96.09,53,91.08,65.69,84.69,65.69Z"/>
-                    </svg>
-                    Discord
+                    <svg class="w-5 h-5" viewBox="0 0 127.14 96.36"><path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77.7,77.7,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.14h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.2,46,96.09,53,91.08,65.69,84.69,65.69Z"/></svg> Discord
                 </button>
             </div>
-
-            <div class="auth-switch">
-                New to Xorvila? <a onclick="toggleAuth()">Create Account</a>
-            </div>
+            <div class="auth-switch">New to Xorvila? <a onclick="toggleAuth()">Create Account</a></div>
         </div>
 
-        <!-- ================= SIGNUP PANEL ================= -->
+        <!-- SIGNUP PANEL -->
         <div id="signup-panel" class="hidden-panel fade-in">
             <h2 class="text-xl font-bold text-white mb-1">Create Account</h2>
             <p class="text-gray-500 text-sm mb-6">Join the ultimate gaming ecosystem.</p>
-
             <div id="signup-error" class="error-msg"></div>
-
             <form id="signup-form">
                 <div class="grid grid-cols-2 gap-3 mb-4">
-                    <div>
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-input !px-3" placeholder="John" required>
-                    </div>
-                    <div>
-                        <label class="form-label">Last Name</label>
-                        <input type="text" class="form-input !px-3" placeholder="Doe" required>
-                    </div>
+                    <div><label class="form-label">First Name</label><input type="text" class="form-input !px-3" placeholder="John" required></div>
+                    <div><label class="form-label">Last Name</label><input type="text" class="form-input !px-3" placeholder="Doe" required></div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">Email Address</label>
-                    <div class="relative">
-                        <input type="email" id="signup-email" class="form-input" placeholder="name@example.com" required>
-                        <i data-lucide="mail" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i>
-                    </div>
+                    <div class="relative"><input type="email" id="signup-email" class="form-input" placeholder="name@example.com" required><i data-lucide="mail" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i></div>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label">Password</label>
-                    <div class="relative">
-                        <input type="password" id="signup-password" class="form-input" placeholder="Create a strong password" required>
-                        <i data-lucide="lock" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i>
-                    </div>
+                    <div class="relative"><input type="password" id="signup-password" class="form-input" placeholder="Create a strong password" required><i data-lucide="lock" class="w-4 h-4 text-gray-500 absolute left-3 top-3.5"></i></div>
                 </div>
-
                 <div class="flex items-center gap-2 mb-4">
                     <input type="checkbox" id="terms" class="accent-[#ff9900]" required>
                     <label for="terms" class="text-xs text-gray-400">I agree to the <a href="#" class="text-[#ff9900] hover:underline">Terms of Service</a></label>
                 </div>
-
                 <button type="submit" id="signup-btn" class="btn-glow">Create Account</button>
             </form>
-
-            <div class="auth-switch">
-                Already have an account? <a onclick="toggleAuth()">Sign In</a>
-            </div>
+            <div class="auth-switch">Already have an account? <a onclick="toggleAuth()">Sign In</a></div>
         </div>
     </div>
 
-    <!-- FIREBASE INTEGRATION CODE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // --- NAYA FIREBASE CONFIG ---
+        // REAL CONFIG PROVIDED BY USER
         const firebaseConfig = {
           apiKey: "AIzaSyDHyUaSz77wcvQ_PA02f7pZk6JeeE2XOv0",
           authDomain: "xorvila.firebaseapp.com",
@@ -301,17 +135,22 @@
           measurementId: "G-WHB1P9JB4H"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const googleProvider = new GoogleAuthProvider();
 
-        // UI Toggle Function
+        // 1. AUTO-REDIRECT IF ALREADY LOGGED IN
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is already logged in, redirect them
+                handleAuthSuccess(user);
+            }
+        });
+
         window.toggleAuth = function() {
             const login = document.getElementById('login-panel');
             const signup = document.getElementById('signup-panel');
             document.getElementById('login-error').style.display = 'none';
-            document.getElementById('signup-error').style.display = 'none';
             
             if (login.classList.contains('hidden-panel')) {
                 login.classList.remove('hidden-panel');
@@ -322,101 +161,73 @@
             }
         };
 
-        // Success Handler
         function handleAuthSuccess(user) {
-            console.log("Logged in user:", user.email);
-            // Save Session
+            console.log("Success:", user.email);
             localStorage.setItem('xorvila_user', 'true');
             localStorage.setItem('xorvila_email', user.email);
-            localStorage.setItem('xorvila_uid', user.uid);
-
-            // Redirect Logic
+            
             const urlParams = new URLSearchParams(window.location.search);
-            const returnUrl = urlParams.get('returnUrl');
-
-            if (returnUrl) {
-                window.location.href = returnUrl;
-            } else {
-                window.location.href = 'index.html';
-            }
+            const returnUrl = urlParams.get('returnUrl') || 'index.html';
+            window.location.href = returnUrl;
         }
 
-        // Display Error Helper
         function showError(elementId, error) {
             const errBox = document.getElementById(elementId);
-            let msg = error.message
-                .replace("Firebase: ", "")
-                .replace("auth/", "")
-                .replace(/-/g, " ");
-            msg = msg.charAt(0).toUpperCase() + msg.slice(1);
+            let msg = error.message;
             
-            errBox.innerText = `Error: ${msg} (Code: ${error.code || 'unknown'})`;
+            // Helpful messages for common Google Auth errors
+            if(msg.includes("auth/unauthorized-domain")) {
+                msg = "DOMAIN ERROR: Please add this website's domain to Firebase Console > Authentication > Settings > Authorized Domains.";
+            } else if (msg.includes("auth/popup-closed-by-user")) {
+                msg = "Sign-in cancelled by user.";
+            } else {
+                msg = msg.replace("Firebase: ", "").replace("auth/", "").replace(/-/g, " ");
+            }
+            
+            errBox.innerText = msg;
             errBox.style.display = 'block';
         }
 
-        // --- EMAIL LOGIN ---
+        // Email Login
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const pass = document.getElementById('login-password').value;
             const btn = document.getElementById('login-btn');
-            
-            document.getElementById('login-error').style.display = 'none';
             btn.innerText = "Authenticating...";
-            btn.disabled = true;
-
             try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, pass);
-                handleAuthSuccess(userCredential.user);
+                await signInWithEmailAndPassword(auth, document.getElementById('login-email').value, document.getElementById('login-password').value);
+                // onAuthStateChanged will handle redirect
             } catch (error) {
                 showError('login-error', error);
                 btn.innerText = "Sign In";
-                btn.disabled = false;
             }
         });
 
-        // --- EMAIL SIGNUP ---
+        // Email Signup
         document.getElementById('signup-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('signup-email').value;
-            const pass = document.getElementById('signup-password').value;
             const btn = document.getElementById('signup-btn');
-            
-            document.getElementById('signup-error').style.display = 'none';
             btn.innerText = "Creating Account...";
-            btn.disabled = true;
-
             try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-                handleAuthSuccess(userCredential.user);
+                await createUserWithEmailAndPassword(auth, document.getElementById('signup-email').value, document.getElementById('signup-password').value);
             } catch (error) {
                 showError('signup-error', error);
                 btn.innerText = "Create Account";
-                btn.disabled = false;
             }
         });
 
-        // --- GOOGLE SIGNIN ---
+        // Google Login
         document.getElementById('google-login-btn').addEventListener('click', async () => {
             try {
-                const result = await signInWithPopup(auth, googleProvider);
-                handleAuthSuccess(result.user);
+                await signInWithPopup(auth, googleProvider);
             } catch (error) {
-                console.error("Google Error:", error);
-                alert("Google Sign-In Failed: " + error.message);
+                showError('login-error', error);
+                alert("Google Sign-In Error: " + error.message);
             }
         });
 
-        // --- DISCORD PLACEHOLDER ---
-        document.getElementById('discord-login-btn').addEventListener('click', () => {
-            alert("Discord Login needs custom setup in Firebase Console. Please use Google or Email for now.");
-        });
-
+        document.getElementById('discord-login-btn').addEventListener('click', () => alert("Use Google or Email."));
     </script>
-    <script>
-        // Init Icons
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
 

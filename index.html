@@ -1,9 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xorvila HUB - Ultimate Digital Ecosystem</title>
+    
+    <!-- AUTH GUARD: Blocks access if not logged in -->
+    <script src="auth-guard.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -212,7 +217,7 @@
                         <a href="#" class="text-white hover:text-[#ff9900] text-sm font-semibold transition-colors">Home</a>
                         <a href="#services" class="text-gray-400 hover:text-[#ff9900] text-sm font-semibold transition-colors">Services</a>
                         <a href="#offers" class="text-gray-400 hover:text-[#ff9900] text-sm font-semibold transition-colors">Offers</a>
-                        <a href="login.html" class="border border-[#333] hover:border-[#ff9900] text-white px-5 py-2 rounded-full text-sm font-medium transition-all hover:shadow-[0_0_15px_rgba(255,153,0,0.3)]">Log In</a>
+                        <a href="#" onclick="localStorage.removeItem('xorvila_user'); window.location.reload();" class="border border-[#333] hover:border-[#ff9900] text-white px-5 py-2 rounded-full text-sm font-medium transition-all hover:shadow-[0_0_15px_rgba(255,153,0,0.3)]">Logout</a>
                     </div>
                 </div>
 
@@ -357,7 +362,7 @@
                     </div>
                 </a>
 
-                <!-- 6. Toy Shop -->
+                <!-- 6. Toy Shop (ADDED BACK) -->
                 <a href="toy-shop.html" class="pro-card group">
                     <div class="card-browser-header">
                         <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
@@ -443,7 +448,7 @@
         </div>
     </section>
 
-    <!-- Ultimate Footer (About Us Added) -->
+    <!-- Ultimate Footer (Names Matched to Original) -->
     <footer class="bg-[#050505] pt-24 pb-10 border-t border-[#1a1a1a] relative" id="contact">
         <div class="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#110d00] to-transparent pointer-events-none"></div>
 
@@ -485,11 +490,9 @@
                     </ul>
                 </div>
 
-                <!-- Column 4: Support & About -->
                 <div>
                     <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Support</h3>
                     <ul class="space-y-4 text-sm text-gray-500">
-                        <!-- About Us Added Here -->
                         <li class="flex items-center gap-3">
                             <i data-lucide="info" class="w-4 h-4 text-[#ff9900]"></i>
                             <a href="about.html" class="hover:text-white transition">About Us</a>
