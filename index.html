@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xorvila HUB - Ultimate Digital Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* --- Ultimate Theme Variables --- */
+        :root {
+            --brand-orange: #ff9900;
+            --brand-orange-glow: rgba(255, 153, 0, 0.5);
+            --brand-black: #050505;
+            --brand-dark-gray: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--brand-black);
+            color: #e5e5e5;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-image: 
+                radial-gradient(circle at 50% 0%, #1a1a1a 0%, transparent 70%),
+                linear-gradient(to bottom, #050505 0%, #000 100%);
+            overflow-x: hidden;
+        }
+
+        /* --- Tech Grid Background --- */
+        .tech-grid {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* --- Logo Styling --- */
+        .hub-box {
+            background: linear-gradient(135deg, #ff9900 0%, #ffb700 100%);
+            color: black;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 900;
+            display: inline-block;
+            margin-left: 5px;
+            box-shadow: 0 0 15px var(--brand-orange-glow);
+            text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+        }
+
+        /* --- Ultimate Cards (Browser Style) --- */
+        .pro-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding-top: 3.5rem; /* Space for browser header */
+            padding-bottom: 1.75rem;
+            padding-left: 1.75rem;
+            padding-right: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Browser Window Header */
+        .card-browser-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            padding-left: 16px;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.red { background-color: #ff5f56; }
+        .dot.yellow { background-color: #ffbd2e; }
+        .dot.green { background-color: #27c93f; }
+
+        /* Hover Effects */
+        .pro-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 153, 0, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .pro-card:hover::after {
+            opacity: 1;
+        }
+
+        .pro-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 153, 0, 0.3);
+            box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.9), 
+                        0 0 20px rgba(255, 153, 0, 0.05) inset;
+        }
+
+        /* Icon Styling */
+        .card-icon {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            width: 56px;
+            height: 56px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+            color: #888;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pro-card:hover .card-icon {
+            background: var(--brand-orange);
+            color: black;
+            border-color: var(--brand-orange);
+            transform: scale(1.1); 
+            box-shadow: 0 0 25px var(--brand-orange-glow);
+        }
+
+        /* --- Updated Highlighted Action Buttons --- */
+        .browser-action {
+            margin-top: auto;
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--brand-orange);
+            background: rgba(255, 153, 0, 0.05); /* Light orange tint */
+            border: 1px solid rgba(255, 153, 0, 0.25); /* Visible border */
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1.5rem;
+        }
+
+        .pro-card:hover .browser-action {
+            background: var(--brand-orange);
+            color: black;
+            border-color: var(--brand-orange);
+            box-shadow: 0 0 20px var(--brand-orange-glow);
+            transform: translateY(-2px);
+        }
+
+        .browser-action span {
+            margin-right: 8px;
+        }
+
+        /* --- Buttons --- */
+        .btn-glow {
+            background: var(--brand-orange);
+            color: black;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.2);
+        }
+
+        .btn-glow:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255, 153, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#ff9900] selection:text-black">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-[#ffffff10] bg-black/70 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <span class="text-2xl font-bold tracking-tight text-white group-hover:text-gray-200 transition">Xorvila<span class="hub-box">HUB</span></span>
+                </div>
+                
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-8">
+                        <a href="#" class="text-white hover:text-[#ff9900] text-sm font-semibold transition-colors">Home</a>
+                        <a href="#services" class="text-gray-400 hover:text-[#ff9900] text-sm font-semibold transition-colors">Services</a>
+                        <a href="#offers" class="text-gray-400 hover:text-[#ff9900] text-sm font-semibold transition-colors">Offers</a>
+                        <a href="login.html" class="border border-[#333] hover:border-[#ff9900] text-white px-5 py-2 rounded-full text-sm font-medium transition-all hover:shadow-[0_0_15px_rgba(255,153,0,0.3)]">Log In</a>
+                    </div>
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMobileMenu()" class="text-gray-400 hover:text-white p-2 focus:outline-none">
+                        <i data-lucide="menu" class="w-7 h-7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-black border-b border-[#222] absolute w-full" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#" class="block px-3 py-3 rounded-md text-base font-medium text-white bg-[#1a1a1a]">Home</a>
+                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium text-gray-400 hover:text-[#ff9900]">Services</a>
+                <a href="login.html" class="block px-3 py-3 rounded-md text-base font-medium text-[#ff9900] border border-[#333] mt-4 text-center">Log In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="tech-grid"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#ff9900] rounded-full opacity-5 blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full border border-[#ffffff15] bg-[#ffffff05] backdrop-blur-sm text-xs font-bold text-[#ff9900] mb-8 uppercase tracking-widest hover:bg-[#ffffff10] transition cursor-pointer">
+                <span class="w-2 h-2 rounded-full bg-[#ff9900] mr-2 animate-pulse"></span>
+                System Operational • 2026 Ready
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-none">
+                BUILD <span class="text-[#333] mx-2">/</span> HOST <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff9900] to-[#ffcc00]">DOMINATE</span>
+            </h1>
+            
+            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-400 leading-relaxed">
+                The ultimate ecosystem for creators. High-performance Minecraft hosting, root-access VPS, and exclusive digital assets.
+            </p>
+            
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-5">
+                <a href="#services" class="btn-glow py-4 px-10 rounded text-sm tracking-widest">
+                    Start Exploring
+                </a>
+                <a href="#offers" class="border border-[#444] text-white font-bold py-4 px-10 rounded hover:bg-white hover:text-black transition duration-300 text-sm tracking-widest uppercase">
+                    View Deals
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-24 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl font-black text-white mb-3">ELITE SERVICES</h2>
+                    <p class="text-gray-500 max-w-md">Premium infrastructure and tools designed for scalability and performance.</p>
+                </div>
+                <div class="hidden md:flex items-center gap-2">
+                    <span class="h-[2px] w-12 bg-[#ff9900]"></span>
+                    <span class="h-[2px] w-4 bg-[#333]"></span>
+                    <span class="h-[2px] w-2 bg-[#333]"></span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" id="cards-container">
+                
+                <!-- 1. Minecraft Hosting -->
+                <a href="minecraft.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="box" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Minecraft Hosting</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">DDoS protected, NVMe powered servers designed for zero lag.</p>
+                    <div class="browser-action">
+                        <span>View Plans</span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                 <!-- 2. VPS -->
+                 <a href="vps.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="server" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">VPS</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Full root access with instant provisioning and 10Gbps uplink.</p>
+                    <div class="browser-action">
+                        <span>Deploy Server</span> <i data-lucide="terminal" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- 3. Dev Plan -->
+                <a href="dev-plan.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="code-2" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Dev Plan</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Sandboxes, CI/CD tools, and APIs for modern stack developers.</p>
+                    <div class="browser-action">
+                        <span>Get Access</span> <i data-lucide="cpu" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                 <!-- 4. Domain Plan -->
+                 <a href="domain.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="globe" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Domain Plan</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Secure your digital identity with premium TLD registration.</p>
+                    <div class="browser-action">
+                        <span>Search Domain</span> <i data-lucide="search" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- 5. Dress Shop -->
+                <a href="dress-shop.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="shirt" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Dress Shop</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Limited edition Xorvila streetwear and gaming apparel.</p>
+                    <div class="browser-action">
+                        <span>View Shop</span> <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- 6. Toy Shop -->
+                <a href="toy-shop.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="gamepad-2" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Toy Shop</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Exclusive collectibles, plushies, and gaming figures.</p>
+                    <div class="browser-action">
+                        <span>View Toys</span> <i data-lucide="rocket" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- 7. Minecraft Account Sell -->
+                <a href="mc-accounts.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="user-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Minecraft Account Sell</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Verified SFA/NFA accounts with lifetime warranty.</p>
+                    <div class="browser-action">
+                        <span>Buy Accounts</span> <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+                <!-- 8. AI Agent -->
+                <a href="ai-agent.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="bot" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">AI Agent</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Deploy autonomous agents to automate your workflow.</p>
+                    <div class="browser-action">
+                        <span>Configure Agent</span> <i data-lucide="settings" class="w-4 h-4"></i>
+                    </div>
+                </a>
+                
+                 <!-- 9. Collaboration -->
+                 <a href="collab.html" class="pro-card group">
+                    <div class="card-browser-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <div class="card-icon">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Collaboration</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Join the Xorvila network and monetize your community.</p>
+                    <div class="browser-action">
+                        <span>Join Now</span> <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Section -->
+    <section id="offers" class="py-20 bg-black relative overflow-hidden border-t border-[#222]">
+        <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-[#111] to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="rounded-2xl p-1 bg-gradient-to-r from-[#ff9900] via-[#ff5500] to-[#ff9900]">
+                <div class="bg-[#050505] rounded-xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-8 md:mb-0">
+                        <span class="text-[#ff9900] font-bold tracking-widest text-sm uppercase mb-2 block">Limited Time Event</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-white mb-4">SEASON <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff9900] to-[#fff]">2026 PASS</span></h2>
+                        <p class="text-gray-400 max-w-lg text-lg">Unlock 50% lifetime discount on all hosting plans. Includes priority support and free backups.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <a href="offers.html" class="bg-[#ff9900] text-black font-bold py-4 px-12 rounded hover:bg-[#e68a00] transition transform hover:scale-105 shadow-[0_0_20px_rgba(255,153,0,0.4)] uppercase tracking-wide">
+                            Claim Access
+                        </a>
+                        <p class="text-gray-500 text-xs mt-4">Code: <span class="text-white font-mono">HUB2026</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ultimate Footer (About Us Added) -->
+    <footer class="bg-[#050505] pt-24 pb-10 border-t border-[#1a1a1a] relative" id="contact">
+        <div class="absolute bottom-0 left-0 w-full h-[500px] bg-gradient-to-t from-[#110d00] to-transparent pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
+                
+                <div class="lg:col-span-2 pr-8">
+                    <span class="text-3xl font-bold tracking-tight text-white">Xorvila<span class="hub-box">HUB</span></span>
+                    <p class="mt-6 text-gray-500 text-sm leading-7 max-w-xs">
+                        The heartbeat of digital creation. Providing the infrastructure for the next generation of gamers, developers, and entrepreneurs.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-gray-400 hover:bg-[#ff9900] hover:text-black transition duration-300"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-gray-400 hover:bg-[#ff9900] hover:text-black transition duration-300"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-[#111] flex items-center justify-center text-gray-400 hover:bg-[#ff9900] hover:text-black transition duration-300"><i data-lucide="github" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Infrastructure</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="minecraft.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Minecraft Hosting</a></li>
+                        <li><a href="vps.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">VPS</a></li>
+                        <li><a href="dev-plan.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Dev Plan</a></li>
+                        <li><a href="domain.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Domain Plan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Ecosystem</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <li><a href="ai-agent.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">AI Agent</a></li>
+                        <li><a href="dress-shop.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Dress Shop</a></li>
+                        <li><a href="toy-shop.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Toy Shop</a></li>
+                        <li><a href="mc-accounts.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Minecraft Account Sell</a></li>
+                        <li><a href="collab.html" class="hover:text-[#ff9900] hover:pl-2 transition-all duration-300">Collaboration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Support & About -->
+                <div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-xs mb-8">Support</h3>
+                    <ul class="space-y-4 text-sm text-gray-500">
+                        <!-- About Us Added Here -->
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="info" class="w-4 h-4 text-[#ff9900]"></i>
+                            <a href="about.html" class="hover:text-white transition">About Us</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="life-buoy" class="w-4 h-4 text-[#ff9900]"></i>
+                            <span>Help Center</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="server" class="w-4 h-4 text-[#ff9900]"></i>
+                            <span>Status Page</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 text-[#ff9900]"></i>
+                            <span>contact@xorvila.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-[#222] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-xs uppercase tracking-wider">
+                    &copy; 2026 Xorvila HUB. Mumbai, India.
+                </p>
+                <div class="flex space-x-8 text-xs text-gray-600 uppercase tracking-wider">
+                    <a href="#" class="hover:text-white transition">Privacy</a>
+                    <a href="#" class="hover:text-white transition">Terms</a>
+                    <a href="#" class="hover:text-white transition">SLA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Mouse Move Effect
+        const cards = document.querySelectorAll('.pro-card');
+        document.getElementById('cards-container').onmousemove = e => {
+            for(const card of cards) {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            };
+        }
+    </script>
+</body>
+</html>
+
+
